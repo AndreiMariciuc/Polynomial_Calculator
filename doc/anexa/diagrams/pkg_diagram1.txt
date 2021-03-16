@@ -1,0 +1,51 @@
+
+@startuml
+
+package controllerpolycalc {
+  class ControllerPolycalc {
+    }
+}
+
+package modelpolycalc {
+  class Polinomial {
+  }
+  
+  class Monomial {
+  }
+  
+  package operation {
+    class ModelOperationPolycalc {
+      }
+  }
+}
+
+package viewpolycalc {
+  class InputOutputPanel {
+  }
+  
+  class KeyboardPanel {
+  }
+  
+  class PopUpLaTeX {
+  }
+  
+  class PopUpUndo {
+  }
+  
+  class ViewPolycalc {
+  }
+}
+
+
+package exception {
+  class PolynomialException {
+  }
+}
+
+controllerpolycalc --> viewpolycalc : selecteaza
+controllerpolycalc ----> modelpolycalc : schimba starea
+controllerpolycalc --> exception : trateaza
+modelpolycalc ----> exception: arunca
+viewpolycalc ------> modelpolycalc : interogheaza 
+
+@enduml

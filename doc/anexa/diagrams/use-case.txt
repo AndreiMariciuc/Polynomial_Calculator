@@ -1,0 +1,18 @@
+@startuml
+title Use-case calculator de polinoame
+actor User
+
+User --> (Tastatură calculator)
+User --> (Efectuare operații)
+User --> (Vizualizare rezultat)
+User --> (Urmărirea istoriei input-urilor)
+(Adunare polinoame) ..> (Efectuare operații) : <<extends>>
+(Scădere polinoame) ..> (Efectuare operații) : <<extends>>
+(Înmuțire polinoame) ..> (Efectuare operații) : <<extends>>
+(Împărțire polinoame) ..> (Efectuare operații) : <<extends>>
+(Derivare polinoame) ..> (Efectuare operații) : <<extends>>
+(Integrare polinoame) ..> (Efectuare operații) : <<extends>>
+(Tastatură calculator) ..> (Introducere polinoame) : <<include>>
+(Tastatură calculator) ..> (Stergere polinoame) : <<include>>
+(Vizualizare rezultat) ..> (Afișare cu notații matematice) : <<include>>
+@enduml
