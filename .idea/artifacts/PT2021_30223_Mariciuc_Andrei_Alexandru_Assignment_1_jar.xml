@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PT2021_30223_Mariciuc_Andrei_Alexandru_Assignment_1:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PT2021_30223_Mariciuc_Andrei_Alexandru_Assignment_1_jar</output-path>
+    <root id="archive" name="PT2021_30223_Mariciuc_Andrei_Alexandru_Assignment_1.jar">
+      <element id="module-output" name="PT2021_30223_Mariciuc_Andrei_Alexandru_Assignment_1" />
+      <element id="extracted-dir" path="C:/libs/jlatexmath-0.9.6.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

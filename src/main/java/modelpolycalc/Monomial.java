@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 public class Monomial {
     private double coef;
     private int degree;
-    //ma ajuta la fisare in virgula mobila!
+    //ma ajuta la fisare in virgula mobila! cu aceasta clasa formatez
     private NumberFormat formatter = NumberFormat.getInstance();
 
     public Monomial(String input) {
@@ -21,6 +21,7 @@ public class Monomial {
                 input = input.charAt(0) + "1" + input.substring(1);
             if (input.charAt(input.length() - 1) == 'x')
                 input = input + "^1";
+            //dupa ce am adus in cazul general, extrage coeficientul si gradul
             String[] output = input.split("x\\^");
             coef = Integer.parseInt(output[0]);
             degree = Integer.parseInt(output[1]);

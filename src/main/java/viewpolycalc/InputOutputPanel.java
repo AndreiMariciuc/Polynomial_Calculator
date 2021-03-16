@@ -32,6 +32,10 @@ public class InputOutputPanel extends JPanel {
         add(output);
     }
 
+    /**
+     * ajuta sa fii constient pe ce a apasat utilizatorul la un anumit moment!
+     * se putea implementa in controller, am zis ca e mai logic aici!
+     */
     private void implementFocus() {
         input1.addFocusListener(new FocusListener() {
             @Override

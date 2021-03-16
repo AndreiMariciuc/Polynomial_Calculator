@@ -11,6 +11,7 @@ public class PopUpUndo extends JPopupMenu {
     }
 
     public void addInHistory(JMenuItem item) {
+        //ma asigur ca nu exista duplicate in istorie!
         if(!filtter.containsKey(item.getText())) {
             filtter.put(item.getText(), new Random().nextInt());
             add(item);

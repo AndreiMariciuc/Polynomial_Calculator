@@ -27,7 +27,7 @@ public class ControllerPolycalc {
         INPUT_OUTPUT = viewPolycalc.getInputOutputPanel();
         //model
         this.modelOp = modelOp;
-
+        //adaugare listeneri
         INPUT_OUTPUT.addKeyAdapter(new FormatInputKeyboard());
         INPUT_OUTPUT.addPopUpListener(new PopClickListener());
         INPUT_OUTPUT.addUndoListener(new UndoFirstClickListener(), new UndoSecondClickListener());
@@ -106,7 +106,12 @@ public class ControllerPolycalc {
         }
     }
 
+    /**
+     * clasa responsabila pentru salvarea in istorie a inputurilor
+     * si pentru afisarea rezultatului in urma operatiei!
+     */
     class OperationListener implements ActionListener {
+        //adauga un item pentru lista de undo
         private JMenuItem getItemInHistory(String input, int op) {
             JMenuItem item = new JMenuItem(input);
             item.addActionListener(e1 -> {
@@ -179,7 +184,7 @@ public class ControllerPolycalc {
 
         }
     }
-
+    //clasa pentru lansarea LaTeX
     class PopClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             if (e.isPopupTrigger())
@@ -196,7 +201,7 @@ public class ControllerPolycalc {
             latexMenu.show(e.getComponent(), e.getX(), e.getY());
         }
     }
-
+    //clasa pentru lansarea popup pentru primul input
     class UndoFirstClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             if (e.isPopupTrigger())
@@ -212,7 +217,7 @@ public class ControllerPolycalc {
             UNDO_FIRST_TEXT.show(e.getComponent(), e.getX(), e.getY());
         }
     }
-
+    //clasa pentru lansarea popup pentru al doilea input
     class UndoSecondClickListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
             if (e.isPopupTrigger())

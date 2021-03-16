@@ -31,13 +31,21 @@ public class ModelOperationPolycalc {
         return operationAddSub(-1.0);
     }
 
-    //ma ajuta la adunare si scadere!
+    /**ma ajuta la adunare si scadere!
+     *op = 1 => adunare!
+     *op = -1=> scadere!
+     */
     private Polynomial operationAddSub(Double op) {
         Polynomial resultPoly = new Polynomial();
         TreeMap<Integer, Double> buffer = new TreeMap<>();
 
+        // input1 si input2 sunt deja procesate!!
         for (Monomial monom : input1.getPoly())
-            buffer.put(monom.getDegree(), monom.getCoef()); // input1 si input2 sunt deja procesate!!
+            buffer.put(monom.getDegree(), monom.getCoef());
+
+//         ce face merge?
+//         daca nu exista gradul il aduga,
+//         daca exista se foloseste de functia Double::sum pentru a aduna coeficientii
 
         for (Monomial monom : input2.getPoly())
             buffer.merge(monom.getDegree(), op * monom.getCoef(), Double::sum);
@@ -50,7 +58,7 @@ public class ModelOperationPolycalc {
 
     public Polynomial mul() {
         TreeMap<Integer, Double> buffer = new TreeMap();
-
+        //parcurge listele de monoame si calculeaza coeficienti si gradurile rezultate
         for (var monom1 : input1.getPoly())
             for (var monom2 : input2.getPoly())
                 buffer.merge(monom1.getDegree() + monom2.getDegree(), monom1.getCoef() * monom2.getCoef(), Double::sum);
@@ -64,10 +72,11 @@ public class ModelOperationPolycalc {
     }
 
     public List<Polynomial> div() throws PolynomialException {
+        //salveaza cu nume mai potrivite! se putea evita!
         Polynomial p = input1;
         Polynomial q = input2;
         Polynomial quo = new Polynomial();
-
+        //swap pentru a avea in p cel mai mare grad!
         if (q.getDegree() > p.getDegree()) {
             Polynomial aux;
             aux = p;
@@ -79,8 +88,8 @@ public class ModelOperationPolycalc {
             throw new PolynomialException("Impartire la zero a polinoamelor!");
 
         while (!p.toString().equals("0") && p.getDegree() >= q.getDegree()) {
-            Monomial pMon = p.getPoly().get(p.getPoly().size() - 1);//monomul mare lui p
-            Monomial qMon = q.getPoly().get(q.getPoly().size() - 1);//monomul mare lui q
+            Monomial pMon = p.getPoly().get(p.getPoly().size() - 1);//monomul cu grad mare a lui p
+            Monomial qMon = q.getPoly().get(q.getPoly().size() - 1);//monomul cu grad mare a lui q
             Monomial quoPart = new Monomial(pMon.getCoef() / qMon.getCoef(),
                     pMon.getDegree() - qMon.getDegree()); // calculam catul prin impartire!
             quo.addMonomial(quoPart);//adaugare la cat!
@@ -98,7 +107,7 @@ public class ModelOperationPolycalc {
 
     public Polynomial integ() {
         Polynomial resultPoly = new Polynomial();
-
+        //pargerea listei de moname si aplicarea formulei de integrare
         for (var it : input1.getPoly())
             resultPoly.addMonomial(new Monomial(it.getCoef() / (it.getDegree() + 1), it.getDegree() + 1));
         return resultPoly;
@@ -106,7 +115,7 @@ public class ModelOperationPolycalc {
 
     public Polynomial deriv() {
         Polynomial resultPoly = new Polynomial();
-
+        //pargerea listei de moname si aplicarea formulei de derivare
         for (Monomial monom : input1.getPoly())
             resultPoly.addMonomial(new Monomial(monom.getCoef() * monom.getDegree(), monom.getDegree() - 1));
         return resultPoly;
