@@ -1,6 +1,7 @@
 package modelpolycalc;
 
 import exception.PolynomialException;
+import modelpolycalc.operation.ModelOperationPolycalc;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -42,7 +43,12 @@ class PolynomialTest {
                 () -> assertEquals("+200x+x^200+x^300", finalP3.toString()),
                 () -> assertEquals("+x^2", finalP4.toString()),
                 () -> assertEquals("+1+898x+99x^2+900x^4+300x^20", finalP5.toString()),
-                () -> assertEquals("0", finalP6.toString())
+                () -> assertEquals("0", finalP6.toString()),
+                () -> assertThrows(PolynomialException.class, () -> new Polynomial("1+xx+3x6^2")),
+                () -> assertThrows(PolynomialException.class, () -> new Polynomial("1+x+3x6^^2")),
+                () -> assertThrows(PolynomialException.class, () -> new Polynomial("1+x+x6^2")),
+                () -> assertThrows(PolynomialException.class, () -> new Polynomial("x2+x100")),
+                () -> assertThrows(PolynomialException.class, () -> new ModelOperationPolycalc(new Polynomial("0"), new Polynomial("0")).div())
         );
     }
 
